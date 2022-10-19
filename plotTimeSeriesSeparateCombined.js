@@ -1,5 +1,3 @@
-const { isNumeric } = require("jquery");
-
 var localization = {
     en: {
         title: "Plot Time Series",
