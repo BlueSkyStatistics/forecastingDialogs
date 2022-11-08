@@ -126,6 +126,7 @@ BSkyFormat(BSkyRes)
                 el: new dstVariable(config, {
                     label: localization.en.destination,
                     no: "destination",
+                    required:true,
                     filter: "Numeric|Scale",
                     extraction: "NoPrefix|UseComma|Enclosed",
                 }), r: ['{{ var | safe}}']
