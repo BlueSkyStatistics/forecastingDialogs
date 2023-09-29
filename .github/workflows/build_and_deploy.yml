@@ -30,7 +30,7 @@ jobs:
       - name: Load Module Meta
         id: module_meta
         run: |
-          export MODULE_NAME=$(python3 -c "import json; print(json.load(open('package.json', 'r'))['${{ env.MODULE_NAME_KEY }}'])")
+          export MODULE_NAME=$(python3 -c "import json; print(json.load(open('package.json', 'r'))['${{ env.MODULE_NAME_KEY }}'].split('/')[-1])")
           echo "MODULE_NAME=$MODULE_NAME" >> "$GITHUB_OUTPUT"
           
           export MODULE_VERSION=$(python3 -c "import json; print(json.load(open('package.json', 'r'))['${{ env.MODULE_VERSION_KEY }}'])")
@@ -122,3 +122,4 @@ jobs:
 
       - name: Upload
         run: python3 upload.py '${{ secrets.FIREBASE_CREDS }}' '${{ needs.build.outputs.MODULE_NAME }}' '${{ needs.build.outputs.MODULE_SUBSCRIPTION }}' '${{ needs.build.outputs.MODULE_VERSION }}'
+        
